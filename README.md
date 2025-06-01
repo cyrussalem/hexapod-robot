@@ -86,6 +86,12 @@ python main.py
 - Use debug flags in the code to simulate movement without powering servos.
 - Ensure your servo power supply is stable — voltage drops can cause erratic behavior or reboots.
 
+## Unit Tests
+```
+pytest tests/ -v
+/Users/cyrus/Library/Python/3.9/bin/pytest tests/ -v
+```
+
 ## 🖼️ Demo
 
 _(Add images or video links here showing the robot walking or performing tasks)_
