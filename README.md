@@ -67,7 +67,6 @@ scp -r . pi@192.168.1.100:/home/pi/hexapod-robot/
 ssh pi@<raspberry_pi_ip>
 cd ~/hexapod-robot
 ```
-raspberry
 
 4. **Install dependencies:**
 
