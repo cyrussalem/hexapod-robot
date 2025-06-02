@@ -8,7 +8,7 @@ class Hexapod:
         self.initialise_legs()
 
     def move(self, direction=None):
-        self.legs[0].move_to_position([90, 45, 45])
+        self.legs[0].move_to_position([0, 0, 159])
 
     def initialise_legs(self):
         for i in range(self.num_legs):
