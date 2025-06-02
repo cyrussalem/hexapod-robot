@@ -21,16 +21,16 @@ class InverseKinematics:
     def r2(self, z):
         return z
 
-    def fee_2(self, x, y, z):
+    def phi_2(self, x, y, z):
         return math.degrees(math.atan(self.r2(z) / self.r1(x, y)))
 
     def r3(self, x, y, z):
         return math.sqrt(self.r1(x, y) ** 2 + self.r2(z) ** 2)
 
-    def fee_1(self, x, y, z):
+    def phi_1(self, x, y, z):
         return math.degrees(math.acos((self.a3 ** 2 - self.a2 ** 2 - self.r3(x, y, z) ** 2) / (-2 * self.a2 * self.r3(x, y, z))))
 
-    def fee_3(self, x, y, z):
+    def phi_3(self, x, y, z):
         return math.degrees(math.acos((self.r3(x, y, z) ** 2 - self.a2 ** 2 - self.a3 ** 2) / (-2 * self.a2 * self.a3)))
 
     def calculate_servo_angles(self, x, y, z):
@@ -38,7 +38,7 @@ class InverseKinematics:
         print('POSTIIONS IN SPACE:', x, y, z)
 
         servo_angle_1 = math.degrees(math.atan(y / x))
-        servo_angle_2 = self.fee_2(x, y, z) - self.fee_1(x, y, z)
-        servo_angle_3 = 180 - self.fee_3(x, y, z)
+        servo_angle_2 = self.phi_2(x, y, z) - self.phi_1(x, y, z)
+        servo_angle_3 = 180 - self.phi_3(x, y, z)
 
         return (servo_angle_1, servo_angle_2, servo_angle_3)
