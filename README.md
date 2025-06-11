@@ -47,16 +47,13 @@ cd hexapod-robot
 ```
 
 2. **Transfer the code to your Raspberry Pi:**
-   Use `scp` to securely copy all files:
-
-```
-scp -r . pi@<raspberry_pi_ip>:/home/pi/hexapod-robot/
-```
+Use `scp` to securely copy all files:
 
 Replace `<raspberry_pi_ip>` with your Raspberry Pi's IP address. Example:
 
-```
-scp -r . pi@192.168.1.100:/home/pi/hexapod-robot/
+```shell
+setopt extended_glob
+scp -r ^.git ^.pytest_cache pi@<raspberry_pi_ip>:/home/pi/hexapod-robot/
 ```
 
 💡 Ensure SSH is enabled on the Pi: Run `sudo raspi-config` → Interface Options → SSH → Enable
