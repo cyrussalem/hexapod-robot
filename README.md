@@ -64,7 +64,6 @@ scp -r ^.git ^.pytest_cache pi@<raspberry_pi_ip>:/home/pi/hexapod-robot/
 ssh pi@<raspberry_pi_ip>
 cd ~/hexapod-robot
 ```
-raspberry
 
 4. **Install dependencies:**
 
