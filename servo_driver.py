@@ -86,7 +86,7 @@ class PCA9685:
 
     def setServoAngle(self, channel, angle):
         # set the pulse value from the angle
-        if angle < 0 or angle > 180:
+        if angle < -1 or angle > 181:
             print(f"Angle {angle} is out of range")
             return
         # pulse = ((1900 * angle) / 180) + 500
