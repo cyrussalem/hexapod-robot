@@ -20,16 +20,26 @@ class Hexapod:
             x, y, z = 60, -60, -74
             # Move for 3 seconds, incrementing every 100ms
             while True:
-                self.gradual_move(self.legs[0], [65, -35, 74], [85, 0, 74], 0.2);
-                self.gradual_move(self.legs[0], [85, 0, 74], [65, 35, 74], 0.2);
-                self.gradual_move(self.legs[0], [65, 35, 74], [85, 0, 85], 0.2);
-                self.gradual_move(self.legs[0], [85, 0, 85], [65, -35, 74], 0.2);
+                # self.gradual_move(self.legs[0], [65, -35, 74], [85, 0, 74], 0.2);
+                # self.gradual_move(self.legs[0], [85, 0, 74], [65, 35, 74], 0.2);
+                # self.gradual_move(self.legs[0], [65, 35, 74], [85, 0, 85], 0.2);
+                # self.gradual_move(self.legs[0], [85, 0, 85], [65, -35, 74], 0.2);
     
                 
-                self.gradual_move(self.legs[3], [65, 35, 74], [85, 0, 74], 0.2);
-                self.gradual_move(self.legs[3], [85, 0, 74], [65, -35, 74], 0.2);
-                self.gradual_move(self.legs[3], [65, -35, 74], [85, 0, 64], 0.2);
-                self.gradual_move(self.legs[3], [85, 0, 64], [65, 35, 74], 0.2);
+                # self.gradual_move(self.legs[3], [65, 35, 74], [85, 0, 74], 0.2);
+                # self.gradual_move(self.legs[3], [85, 0, 74], [65, -35, 74], 0.2);
+                # self.gradual_move(self.legs[3], [65, -35, 74], [85, 0, 64], 0.2);
+                # self.gradual_move(self.legs[3], [85, 0, 64], [65, 35, 74], 0.2);
+    
+                self.gradual_move([self.legs[0], self.legs[3]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.2);
+                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.2);
+                self.gradual_move([self.legs[0], self.legs[3]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.2);
+                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.2);
+    
+                self.gradual_move([self.legs[1], self.legs[2]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.2);
+                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.2);
+                self.gradual_move([self.legs[1], self.legs[2]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.2);
+                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.2);
 
 
                 # self.gradual_move(self.legs[3], [85, 0, 74], [65, 35, 74], 0.2);
@@ -66,24 +76,38 @@ class Hexapod:
             leg = Leg(i, 'right' if i < self.num_legs/2 else 'left')
             self.legs.append(leg)
 
-    def gradual_move(self, leg, start_position, end_position, time_to_move):
-        # time_to_move is in seconds
-        # start_position and end_position are lists of 3 values
-        # we will move from start_position to end_position in time_to_move seconds
-        # we will move in steps of 100ms
-        steps = int(time_to_move / 0.05)
+    def gradual_move(self, legs, start_positions, end_positions, time_to_move):
+        """
+        Move multiple legs simultaneously from their respective start_positions to end_positions over time_to_move seconds.
+        legs: list of Leg objects
+        start_positions: list of [x, y, z] for each leg
+        end_positions: list of [x, y, z] for each leg
+        time_to_move: total time in seconds
+        """
+        import time
+
+        num_legs = len(legs)
+        assert len(start_positions) == num_legs and len(end_positions) == num_legs, \
+            "legs, start_positions, and end_positions must have the same length"
+
+        steps = int(time_to_move / 0.1)
         if steps < 1:
             steps = 1
-        delta = [
-            (end_position[i] - start_position[i]) / steps for i in range(3)
-        ]
-        for step in range(steps + 1):
-            current_position = [
-                start_position[i] + delta[i] * step for i in range(3)
+
+        # Precompute deltas for each leg
+        deltas = [
+            [
+                (end_positions[leg_idx][i] - start_positions[leg_idx][i]) / steps
+                for i in range(3)
             ]
-            # for leg in self.legs:
-            leg.move_to_position(current_position)
-            # self.legs[2].move_to_position(current_position)
-            # self.legs[3].move_to_position(current_position)
-            time.sleep(0.1)
-        
+            for leg_idx in range(num_legs)
+        ]
+
+        for step in range(steps + 1):
+            for leg_idx, leg in enumerate(legs):
+                current_position = [
+                    start_positions[leg_idx][i] + deltas[leg_idx][i] * step
+                    for i in range(3)
+                ]
+                leg.move_to_position(current_position)
+            time.sleep(0.05)
