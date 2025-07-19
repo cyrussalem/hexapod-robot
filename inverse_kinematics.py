@@ -35,7 +35,7 @@ class InverseKinematics:
 
     def calculate_servo_angles(self, x, y, z):
 
-        print('POSTIIONS IN SPACE:', x, y, z)
+        # print('POSTIIONS IN SPACE:', x, y, z)
 
         servo_angle_1 = math.degrees(math.atan(y / x))
         servo_angle_2 = self.phi_2(x, y, z) - self.phi_1(x, y, z)

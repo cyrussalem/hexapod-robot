@@ -16,59 +16,19 @@ class Hexapod:
     
     def move_forward(self):
         while True:
-            # Initial position
-            x, y, z = 60, -60, -74
             # Move for 3 seconds, incrementing every 100ms
             while True:
-                # self.gradual_move(self.legs[0], [65, -35, 74], [85, 0, 74], 0.2);
-                # self.gradual_move(self.legs[0], [85, 0, 74], [65, 35, 74], 0.2);
-                # self.gradual_move(self.legs[0], [65, 35, 74], [85, 0, 85], 0.2);
-                # self.gradual_move(self.legs[0], [85, 0, 85], [65, -35, 74], 0.2);
-    
                 
-                # self.gradual_move(self.legs[3], [65, 35, 74], [85, 0, 74], 0.2);
-                # self.gradual_move(self.legs[3], [85, 0, 74], [65, -35, 74], 0.2);
-                # self.gradual_move(self.legs[3], [65, -35, 74], [85, 0, 64], 0.2);
-                # self.gradual_move(self.legs[3], [85, 0, 64], [65, 35, 74], 0.2);
+                self.gradual_move([self.legs[0], self.legs[3]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.1);
+                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.1);
+                self.gradual_move([self.legs[0], self.legs[3]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.1);
+                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.1);
     
-                self.gradual_move([self.legs[0], self.legs[3]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.2);
-                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.2);
-                self.gradual_move([self.legs[0], self.legs[3]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.2);
-                self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.2);
-    
-                self.gradual_move([self.legs[1], self.legs[2]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.2);
-                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.2);
-                self.gradual_move([self.legs[1], self.legs[2]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.2);
-                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.2);
+                self.gradual_move([self.legs[1], self.legs[2]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.1);
+                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.1);
+                self.gradual_move([self.legs[1], self.legs[2]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.1);
+                self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.1);
 
-
-                # self.gradual_move(self.legs[3], [85, 0, 74], [65, 35, 74], 0.2);
-                # self.gradual_move(self.legs[3], [65, 35, 74], [85, 0, 85], 0.2);
-                # self.gradual_move(self.legs[3], [85, 0, 85], [65, -35, 85], 0.2);
-
-                # self.gradual_move([85, 0, 85], [65, -35, 74], 0.5);
-                # self.gradual_move([85, 0, 85], [65, -35, 85], 0.5);
-                # self.gradual_move([60, -60, -74], [85, 0, -74], 1);
-                # self.gradual_move([85, 0, -74], [60, 60, -74], 1);
-                # self.gradual_move([60, 60, -74], [96.8, 96.8, 52], 1);
-                # self.gradual_move([96.8, 96.8, 52], [137, 0, 52], 1);
-                # self.gradual_move([137, 0, 52], [96.8, -96.8, 52], 1);
-                # self.gradual_move([96.8, -96.8, 52], [60, -60, -74], 1);
-                # self.legs[0].move_to_position([x, y, z])
-                # time.sleep(1)
-                # self.legs[0].move_to_position([85, 0, -74])
-                # time.sleep(1)
-                # self.legs[0].move_to_position([60, 60, -74])
-                # time.sleep(1)
-                # self.legs[0].move_to_position([60, 60, -74])
-                # time.sleep(1)
-                # # the lifting part was 52
-                # self.legs[0].move_to_position([96.8, 96.8, 52])
-                # time.sleep(1)
-                # self.legs[0].move_to_position([137, 0, 52])
-                # time.sleep(1)
-                # self.legs[0].move_to_position([96.8, -96.8, 52])
-                # time.sleep(1)
 
 
     def initialise_legs(self):
@@ -90,7 +50,7 @@ class Hexapod:
         assert len(start_positions) == num_legs and len(end_positions) == num_legs, \
             "legs, start_positions, and end_positions must have the same length"
 
-        steps = int(time_to_move / 0.1)
+        steps = int(time_to_move / 0.025)
         if steps < 1:
             steps = 1
 
