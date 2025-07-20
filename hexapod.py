@@ -5,7 +5,7 @@ import time
 class Hexapod:
     def __init__(self):
         self.legs = []
-        self.num_legs = 4
+        self.num_legs = 6
         self.initialise_legs()
 
     def move(self, direction):
@@ -23,11 +23,17 @@ class Hexapod:
                 self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.1);
                 self.gradual_move([self.legs[0], self.legs[3]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.1);
                 self.gradual_move([self.legs[0], self.legs[3]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.1);
+
     
                 self.gradual_move([self.legs[1], self.legs[2]], [[65, -35, 74], [65, 35, 74]], [[85, 0, 74], [85, 0, 74]], 0.1);
                 self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 74], [85, 0, 74]], [[65, 35, 74], [65, -35, 74]], 0.1);
                 self.gradual_move([self.legs[1], self.legs[2]], [[65, 35, 74], [65, -35, 74]], [[85, 0, 85], [85, 0, 64]], 0.1);
                 self.gradual_move([self.legs[1], self.legs[2]], [[85, 0, 85], [85, 0, 64]], [[65, -35, 74], [65, 35, 74]], 0.1);
+
+                # self.gradual_move([self.legs[5]], [[65, -35, 74]], [[85, 0, 74]], 0.1);
+                # self.gradual_move([self.legs[5]], [[85, 0, 74]], [[65, 35, 74]], 0.1);
+                # self.gradual_move([self.legs[5]], [[65, 35, 74]], [[85, 0, 85]], 0.1);
+                # self.gradual_move([self.legs[5]], [[85, 0, 85]], [[65, -35, 74]], 0.1);
 
 
 
