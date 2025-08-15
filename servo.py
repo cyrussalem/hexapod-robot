@@ -14,7 +14,7 @@ class Servo:
             self.servo_driver_address = 0x40
 
         print(f"Servo Driver Address: {self.servo_driver_address}, Servo channel: {self.servo_channel}, Servo numvber: {self.servo_number}")
-        self.servo_driver = PCA9685(self.servo_driver_address, debug=True)
+        self.servo_driver = PCA9685(self.servo_driver_address, debug=False)
         self.servo_driver.setPWMFreq(50)
 
     def set_angle(self, angle):

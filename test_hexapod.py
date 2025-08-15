@@ -15,3 +15,19 @@ def main():
 
 if __name__ == '__main__':  # Fixed: should be __name__ not **name**
     main() 
+
+
+
+# legs 0 and 2
+# 1, 60, -60, 74
+# 2, 85, 0, 74
+# 4, 73, 0, 90
+
+
+# leg 1
+
+# 1, 60, 60, 74
+# 2, 73, 0, 90
+# 2, 85, 0, 74
+
+
